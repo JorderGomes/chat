@@ -1,16 +1,17 @@
-const socket = new WebSocket('ws://localhost:8080/connect');
+const socket = new SockJS('http://localhost:8080/connect');
 const Client = Stomp.over(socket);
 
 const newMessageForm = document.getElementById("new-message-form");
- newMessageForm.addEventListener("submit", function (e) {
-     e.preventDefault();
-     sendMessage();
-    //  const message = document.getElementById("message").value;
-    //  document.getElementById("message").value = '';
-    //  const name = localStorage.getItem('user') !== null ? localStorage.getItem('user') : 'nome';
-    //  const dat eTimeNow = new Dat e();
-    //  append Message(message, name, formatDat e(dat eTimeNow));
- });
+const newMessageButton = document.getElementById("sendMessage");
+newMessageForm.addEventListener("submit", function sent(event) {
+    event.preventDefault();
+    sendMessage();
+});
+// newMessageButton.addEventListener("click", function (e) {
+//      e.preventDefault();
+//      sendMessage(e);
+    
+//  });
 
 function formatDate(date) {
     const dia = date.getDate();
@@ -22,7 +23,7 @@ function formatDate(date) {
 }
 
 function sendMessage() {
-    // e.preventDefault();
+    console.log("helo");
     const messageText = document.getElementById("message").value;
     document.getElementById("message").value = "";
     const name = localStorage.getItem('user') !== null ? localStorage.getItem('user') : 'nome';
@@ -33,7 +34,6 @@ function sendMessage() {
         msg: messageText,
         time: dateTimeNow
     };
-
     Client.send("/app/chatmessage", {}, JSON.stringify(message));
 
 }
@@ -82,10 +82,10 @@ function appendMessage(message, name, timeStr){
 }
 
 function connect(){
+    
     Client.connect({}, function (frame) {
         console.log('Conectado: ' + frame);
-
-
+        
         Client.subscribe('/chat', function (message) {
             const chatMessage = JSON.parse(message.body);
             console.log(chatMessage);
