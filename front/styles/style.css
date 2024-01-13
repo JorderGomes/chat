@@ -1,4 +1,23 @@
 
+:root{
+    --bg-primary: #0d6efd;
+    --bg-secondary: #6c757d;
+
+    --background-color: #2A2A2E;
+    --danger-color: #dc3545;
+    --background-color-hover: rgba(180, 180, 180, 0.2);
+    --background-card-content: #38383D;
+    --card-text: rgba(249, 249, 250, 0.8);
+    --border-modal: rgba(62, 72, 82, 1);
+    --bg-modal: rgba(67, 67, 64, 1);
+    --btn-outline-color: rgba(112, 176, 255, 0.9);
+    --btn-outline-bg: rgba(67, 67, 64, 0.2);
+}
+
+.hidden {
+    display: none;
+}
+
 #chat{
     height: 100%;
     overflow: hidden;
@@ -21,6 +40,32 @@
     height: 8vh;
 }
 
+/* popup */
+
+#popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.popupContent h2 {
+    margin-bottom: 10px;
+}
+
+
+/* chat */
 .chat-online {
     color: var(--light-green);
 }
@@ -73,4 +118,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.text-right{
+    background-color: var(--bg-primary);
+    color: var(--card-text);
+
+}
+
+.text-left{
+    background-color: var(--bg-secondary);
+    color: var(--card-text);
+
 }

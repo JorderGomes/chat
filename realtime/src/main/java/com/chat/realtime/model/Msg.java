@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class Msg {
     private String user;
     private String msg;
+    private String time;
 }
